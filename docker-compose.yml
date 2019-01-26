@@ -1,0 +1,22 @@
+version: '3.3'
+
+networks:
+  default:
+  traefik_default:
+    external:
+      name: traefik_default
+
+
+services:
+  server:
+    build: .
+    image: geokretyapi_client_prototype:latest
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.frontend.rule=Host:client-proto.geokrety.house.kumy.net"
+        - "traefik.docker.network=traefik_default"
+        - "traefik.frontend.passHostHeader=true"
+        - "traefik.port=5000"
+    networks:
+      - traefik_default

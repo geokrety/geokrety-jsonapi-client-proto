@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% import 'macros/geokret.jinja' as macro_geokret %}
+{% import 'macros/move.jinja' as macro_move %}
+
+{% block header %}
+  <h2>{% block title %}GeoKret{% endblock %}</h2>
+{% endblock %}
+
+{% block content %}
+{{macro_geokret.geokret(geokret)}}
+
+<h3>Moves</h3>
+{% for move in geokret.moves %}
+  {{macro_move.move(move)}}
+{% endfor %}
+{% endblock %}

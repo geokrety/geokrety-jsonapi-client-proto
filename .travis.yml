@@ -1,0 +1,27 @@
+language: python
+python:
+  - 3.4
+  - 3.5
+  - 3.6
+cache: pip
+
+install:
+  - pip install -r requirements.txt
+  - pip install -U flake8
+
+script:
+  - flake8 .
+after_success:
+  - python setup.py sdist
+
+before_deploy: "python setup.py sdist"
+deploy:
+  - provider: releases
+    api_key:
+      secure: J09hMCS+Wo3tUhstIWeTTRB2VSRbQShPxVMfUF8l4RUmeyCgfjYicS+PPWuwOh0kUF605rAPY3zREeBDJ+lGZcA1izK1YGMpW3UjN6sQgOUllV0hpAg9OsXABngcar+lgl4L1XOjJse6yXlctw9AGEfzBt6ACCMKA0PcOQccxKhepmpqm3OUr3VXqBgCMPhJMYCMWeQht0zbw0ieDtvtL9jxGzme93QWlv/LjcxFvM3KYCMn+DPjWlm3o107sFIxL9f3MwgJUkuP2Vihzs+K/N2vLD6Q9qjPGxxgghYyFRqB/EjD6kmGUXQ+K3MJvMB3BTrOyUTYLyYXhqI+sOY7I2lyzeY5b9wPLl1HR4Av6eRKY3sieDN8Ai8rvEBMJ0Schq2Syh6ktq+VFxa6nHGFlRYY76DiIAPfpDeWDkDpdUSr/pnZnKfAUWRUJ31el8R+Ik0DABxJ6D5gBqwo4AjY5Knobh4TQS8k0OQzst3lOi/yCmZKrRXEDWsrUAYQelXrN7sbI+MpUReqnjsWTQu7HOdI2iwZAL2hGLbB7WdPGRpRsD/SbW8n1e8yneXT6lw/U5D9+8BcaoqrQ9r11jS/pOXFs2zIPphldaKXhI8tF018Saw7IJho7aoBqzOw6kBG30p3JgV5oIqnr9Ke9rBtJEgpXaqkKl/liO0bZt7KwVk=
+    file_glob: true
+    file: dist/geokrety-jsonapi-client-proto-*.tar.gz
+    skip_cleanup: true
+    on:
+      tags: true
+      repo: geokrety/geokrety-jsonapi-client-proto

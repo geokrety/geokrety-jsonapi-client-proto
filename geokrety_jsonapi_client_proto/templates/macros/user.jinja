@@ -1,0 +1,36 @@
+
+{% import 'macros/tools.jinja' as tools %}
+
+{% macro user(user) %}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title pull-left">
+        <h3 class="panel-title">{{link_to(user)}} - {{user.language}} {{tools.country_flag(user.country)}}</h3>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="panel-body">
+      <dl>
+        <dt>Join datetime:</dt><dd>{{user.join_datetime}}</dd>
+        <dt>Email:</dt><dd>{{user.email}}</dd>
+      </dl>
+    </div>
+
+    <!-- List group -->
+    <ul class="list-group">
+      <li class="list-group-item">Geokrety owned: {{user.geokrety_owned}}</li>
+      <li class="list-group-item">Geokrety held: {{user.geokrety_held}}</li>
+      <li class="list-group-item">Moves: {{user.moves}}</li>
+    </ul>
+  </div>
+{% endmacro %}
+
+{% macro link_to(user, username=None) %}
+  {% if username %}
+    {{username}}
+  {% else %}
+    <a href="{{url_for('user', user_id=user.id)}}">
+      {{user.name}}
+    </a>
+  {% endif %}
+{% endmacro %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% import 'macros/move.jinja' as macros_move %}
+
+{% block header %}
+  <h1>{% block title %}Move Comment{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+{{macros_move.comment(comment)}}
+{% endblock %}

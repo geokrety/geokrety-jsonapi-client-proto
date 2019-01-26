@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% import 'macros/user.jinja' as macros_user %}
+
+{% block header %}
+  <h1>{% block title %}Users{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+{% for user in users %}
+  {{macros_user.user(user)}}
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,51 @@
+
+{% import 'macros/user.jinja' as macro_user %}
+
+{% macro news(news) %}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title pull-left">
+        <h3 class="panel-title">{{link_to(news)}}</h3>
+      </div>
+      <div class="panel-title pull-right">
+        {{link_to(news, 'Comments')}} <span class="badge">{{news.comments_count}}</span>
+        <i>
+          {{news.created_on_datetime}} ({{macro_user.link_to(news.author, news.username)}})
+        </i>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="panel-body">
+      {{news.content}}
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro comment(comment) %}
+  <div class="panel panel-default">
+    <div class="panel-body">
+      {{comment.comment}}
+    </div>
+    <div class="panel-footer">
+      <div class="pull-left">
+        {{macro_user.link_to(comment.author)}}
+      </div>
+      <div class="pull-right">
+        {{comment.created_on_datetime}}
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro link_to(news, title=None) %}
+  <a href="{{url_for('news', news_id=news.id)}}">
+    {% if title %}
+      {{title}}
+    {% elif news.title %}
+      {{news.title}}
+    {% else %}
+      {{news.id}}
+    {% endif %}
+  </a>
+{% endmacro %}

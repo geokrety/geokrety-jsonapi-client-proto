@@ -1,0 +1,123 @@
+
+{% import 'macros/tools.jinja' as tools %}
+{% import 'macros/user.jinja' as macro_user %}
+
+{% macro move(move) %}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title pull-left">
+        <h3 class="panel-title">
+          {{link_to(move, '<span class="glyphicon glyphicon-link" aria-hidden="true"></span>')}}
+          {{tools.country_flag(move.country)}}
+          {{move.waypoint}}
+        </h3>
+      </div>
+      <div class="panel-title pull-right">
+        {{move.moved_on_datetime}} / {{macro_user.link_to(move.author, move.username)}} {{move.application_name}}
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-1 col-md-1">
+          <div class="row">
+            <div class="col-sm-12 col-md-12">{{tools.icon(move)}}</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 col-md-12">{{move.distance}} km</div>
+          </div>
+        </div>
+        <div class="col-sm-11 col-md-11">
+          {{move.comment}}
+        </div>
+      </div>
+    </div>
+
+    <!-- List group -->
+    <ul class="list-group">
+      {% for comment in move.comments %}
+        <li class="list-group-item {% if comment.type_ == 1 %}list-group-item-danger{% endif %}">
+          <div class="pull-left">
+            {% if comment.type_ == 0 %}
+              <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+            {% elif comment.type_ == 1 %}
+              <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+            {% endif %}
+            {{macro_user.link_to(comment.author)}}:
+            {{comment.comment}}
+          </div>
+          <div class="pull-right">
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+          </div>
+          <div class="clearfix"></div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+
+
+
+  <!--h4><a href="{{url_for('move', move_id=move.id)}}">{{move.id}}</a> {{move.type_.name}} ({{move.type_.id}})</h4>
+  <dl>
+    <dt>Comment:</dt><dd>{{move.comment}}</dd>
+    <dt>Author:</dt><dd>{{macro_user.link_to(move.author, move.username)}}</dd>
+    <dt>Application name:</dt><dd>{{move.application_name}}</dd>
+    <dt>Application version:</dt><dd>{{move.application_version}}</dd>
+    <dt>Pictures count:</dt><dd>{{move.pictures_count}}</dd>
+    <dt>Comments count:</dt><dd>{{move.comments_count}}</dd>
+    <dt>Pictures count:</dt><dd>{{move.pictures_count}}</dd>
+    <dt>Moved on datetime:</dt><dd>{{move.moved_on_datetime}}</dd>
+    <dt>Updated on datetime:</dt><dd>{{move.updated_on_datetime}}</dd>
+
+    <dt>Waypoint:</dt><dd>{{move.waypoint}}</dd>
+    <dt>Latitude:</dt><dd>{{move.latitude}}</dd>
+    <dt>Longitude:</dt><dd>{{move.longitude}}</dd>
+    <dt>Altitude:</dt><dd>{{move.altitude}}</dd>
+    <dt>Country:</dt><dd>{{move.country}}</dd>
+    <dt>Distance:</dt><dd>{{move.distance}}</dd>
+
+    <dt>Geokret:</dt><dd>{{move.geokret.name}}</dd>
+  </dl-->
+{% endmacro %}
+
+{% macro comment(comment) %}
+  <div class="panel panel-default">
+    <div class="panel-body">
+      {{link_to(comment.move, '<span class="glyphicon glyphicon-link" aria-hidden="true"></span>')}}
+      {{comment.comment}}
+    </div>
+    <div class="panel-footer">
+      <div class="pull-left">
+        {{macro_user.link_to(comment.author)}}
+      </div>
+      <div class="pull-right">
+        {{comment.created_on_datetime}}
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+
+
+  <!--h4><a href="{{url_for('move_comment', comment_id=comment.id)}}">{{comment.id}}</a></h4>
+  <dl>
+    <dt>Comment:</dt><dd>{{comment.comment}}</dd>
+    <dt>Author:</dt><dd>{{macro_user.link_to(comment.author)}}</dd>
+    <dt>Type:</dt><dd>{{comment.type_}}</dd>
+    <dt>Created on datetime:</dt><dd>{{comment.created_on_datetime}}</dd>
+    <dt>Updated on datetime:</dt><dd>{{comment.updated_on_datetime}}</dd>
+
+    <dt>Move:</dt><dd>{{link_to(comment.move)}}</dd>
+  </dl-->
+{% endmacro %}
+
+{% macro link_to(move, text=None) %}
+  <a href="{{url_for('move', move_id=move.id)}}">
+    {% if text %}
+      {{text}}
+    {% else %}
+      {{move.id}}
+    {% endif %}
+  </a>
+{% endmacro %}

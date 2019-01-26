@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% import 'macros/geokret.jinja' as macro_geokret %}
+
+{% block header %}
+  <h1>{% block title %}GeoKrety{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+{% for geokret in geokrety %}
+  {{macro_geokret.geokret(geokret)}}
+{% endfor %}
+
+{% endblock %}

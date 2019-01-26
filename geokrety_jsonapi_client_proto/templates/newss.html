@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% import 'macros/news.jinja' as macros_news %}
+
+{% block header %}
+  <h1>{% block title %}News{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+{% for news in newss %}
+  {{macros_news.news(news)}}
+{% endfor %}
+
+{% endblock %}

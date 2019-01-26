@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% import 'macros/move.jinja' as macros_move %}
+
+{% block header %}
+  <h1>{% block title %}Moves{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+{% for move in moves %}
+  {{macros_move.move(move)}}
+{% endfor %}
+{% endblock %}
