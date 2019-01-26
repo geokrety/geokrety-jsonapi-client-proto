@@ -11,8 +11,6 @@ install:
 
 script:
   - flake8 .
-after_success:
-  - python setup.py sdist
 
 before_deploy: "python setup.py sdist"
 deploy:
