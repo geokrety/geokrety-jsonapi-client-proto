@@ -13,3 +13,7 @@ A prototype over geokrety-api
 * It doesn't support pagination as per the underlying library
 * It require the api to include relationships data, which we don't really want
  on the production api.
+
+# Demo
+
+![Image of Yaktocat](/demo.png)
