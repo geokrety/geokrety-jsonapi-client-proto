@@ -2,9 +2,6 @@
 
 from flask import Flask, abort, render_template
 
-import jsonapi_requests
-from jsonapi_requests.request_factory import ApiInternalServerError
-
 from .api import Geokret, Move, MoveComment, News, NewsComment, User
 
 app = Flask(__name__)
@@ -12,8 +9,8 @@ app = Flask(__name__)
 
 @app.before_request
 def before_request():
-    # When you import jinja2 macros, they get cached which is annoying for local
-    # development, so wipe the cache every request.
+    # When you import jinja2 macros, they get cached which is annoying for
+    # local development, so wipe the cache every request.
     if app.debug:
         app.jinja_env.cache = {}
 
