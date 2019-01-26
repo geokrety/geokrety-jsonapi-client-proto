@@ -1,6 +1,6 @@
 [![Python 3](https://pyup.io/repos/github/geokrety/geokrety-jsonapi-client-proto/python-3-shield.svg)](https://pyup.io/repos/github/geokrety/geokrety-jsonapi-client-proto/)
 [![Updates](https://pyup.io/repos/github/geokrety/geokrety-jsonapi-client-proto/shield.svg)](https://pyup.io/repos/github/geokrety/geokrety-jsonapi-client-proto/)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f9a7080046074fa6b084f14f9bb0a91c)](https://www.codacy.com/app/GeoKrety/geokrety-jsonapi-client-proto?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=geokrety/geokrety-jsonapi-client-proto&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0b55a3291e2c414b8726276181703ae9)](https://www.codacy.com/app/GeoKrety/geokrety-jsonapi-client-proto?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=geokrety/geokrety-jsonapi-client-proto&amp;utm_campaign=Badge_Grade)
 
 
 # geokrety-jsonapi-client-proto
